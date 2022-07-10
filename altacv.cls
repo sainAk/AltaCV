@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.6.4, 13 Nov 2021) written by
+% This is altacv.cls (v1.6.5, 10 July 2022) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -96,6 +96,7 @@
 \colorlet{body}{black!80!white}
 \colorlet{name}{heading}
 \colorlet{tagline}{accent}
+\colorlet{link}{body}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
 
@@ -139,6 +140,7 @@
 %% v1.3.1: using \unfriendlydetokenize to avoid breaking unicode
 %% v1.6: Use accsupp so that when copying/pasting the icon from PDF to a text
 %%       file, the icon name is pasted
+%% v1.6.4: ability to change hyperlink color using \colorlet{link}{color}
 \ExplSyntaxOn
 \NewDocumentCommand{\printinfo}{m m o}{%
   \BeginAccSupp{method=escape,ActualText={#1:~#2}}
@@ -147,10 +149,10 @@
   }{%
      \if@withhyper%
       \mbox{\textcolor{accent}{\normalfont #1}~
-      \href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
+      \href{#3}{\color{link}\utffriendlydetokenize{#2}}\hspace{2em}}
      \else%
        \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
-      \mbox{\textcolor{accent}{\normalfont #1}~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
+      \mbox{\textcolor{accent}{\normalfont #1}~{\color{link}\utffriendlydetokenize{#3#2}}\hspace{2em}}%
      \fi%
   }%
   \EndAccSupp{}
